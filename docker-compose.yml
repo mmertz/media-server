@@ -73,3 +73,17 @@ services:
     ports:
       - 6767:6767
     restart: unless-stopped
+
+  sabnzbd:
+    image: linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./data/sabnzbd:/config
+      - ./data/downloads:/downloads
+    ports:
+      - 8080:8080
+    restart: unless-stopped
