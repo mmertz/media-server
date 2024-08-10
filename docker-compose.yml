@@ -1,0 +1,75 @@
+version: "3"
+
+services:
+  plex:
+    image: linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+      - PLEX_CLAIM= #optional
+    volumes:
+      - ./data/plex/config:/config
+      - ./data/media/tv:/tv
+      - ./data/media/movies:/movies
+    restart: unless-stopped
+
+  sonarr:
+    image: linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./data/sonarr:/config
+      - ./data/media/tv:/tv
+      - ./data/downloads:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+  radarr:
+    image: linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./data/radarr:/config
+      - ./data/media/movies:/movies
+      - ./data/downloads:/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+  overseerr:
+    image: linuxserver/overseerr:latest
+    container_name: overseerr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./data/overseerr:/config
+    ports:
+      - 5055:5055
+    restart: unless-stopped
+
+  bazarr:
+    image: linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./data/bazarr:/config
+      - ./data/media/tv:/tv
+      - ./data/media/movies:/movies
+    ports:
+      - 6767:6767
+    restart: unless-stopped
