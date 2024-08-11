@@ -118,16 +118,19 @@ services:
 
   buildarr:
     image: callum027/buildarr:latest
+    restart: always
     container_name: buildarr
     networks:
       - media_network
     volumes:
-      - ./data/buildarr:/config
+      - type: bind
+        source: ./buildarr
+        target: /config
+        read_only: true
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/London}
-    restart: unless-stopped
 
 networks:
   media_network:

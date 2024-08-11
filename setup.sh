@@ -16,4 +16,4 @@ export PGID=$GID
 export TZ="$TZ"
 
 # Run docker-compose
-docker-compose up -d
+docker-compose up -d --force-recreate
