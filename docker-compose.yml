@@ -116,6 +116,21 @@ services:
       - 9696:9696
     restart: unless-stopped
 
+  buildarr:
+    image: buildarr/buildarr:latest
+    container_name: buildarr
+    networks:
+      - media_network
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/London}
+    volumes:
+      - ./data/buildarr:/config
+    ports:
+      - 8337:8337
+    restart: unless-stopped
+
 networks:
   media_network:
     name: media_network
