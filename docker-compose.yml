@@ -102,6 +102,21 @@ services:
       - 8080:8080
     restart: unless-stopped
 
+  prowlarr:
+    image: linuxserver/prowlarr:latest
+    container_name: prowlarr
+    networks:
+      - media_network
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/London}
+    volumes:
+      - ./data/prowlarr:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+
 networks:
   media_network:
     name: media_network
