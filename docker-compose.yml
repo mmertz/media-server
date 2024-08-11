@@ -31,7 +31,7 @@ services:
     volumes:
       - ./data/sonarr:/config
       - ./data/media/tv:/tv
-      - ./data/downloads:/downloads
+      - ./data/downloads:/data/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -48,7 +48,7 @@ services:
     volumes:
       - ./data/radarr:/config
       - ./data/media/movies:/movies
-      - ./data/downloads:/downloads
+      - ./data/downloads:/data/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -96,8 +96,7 @@ services:
       - TZ=${TZ:-Europe/London}
     volumes:
       - ./data/sabnzbd:/config
-      - ./data/downloads/complete:/downloads
-      - ./data/downloads/incomplete:/incomplete-downloads
+      - ./data/downloads:/data/downloads
     ports:
       - 8080:8080
     restart: unless-stopped
