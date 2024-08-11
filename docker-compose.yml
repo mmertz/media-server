@@ -117,18 +117,16 @@ services:
     restart: unless-stopped
 
   buildarr:
-    image: buildarr/buildarr:latest
+    image: callum027/buildarr:latest
     container_name: buildarr
     networks:
       - media_network
+    volumes:
+      - ./data/buildarr:/config
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/London}
-    volumes:
-      - ./data/buildarr:/config
-    ports:
-      - 8337:8337
     restart: unless-stopped
 
 networks:

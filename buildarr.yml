@@ -1,38 +1,37 @@
+---
 buildarr:
   watch_config: true
+  update_days:
+    - "monday"
+    - "wednesday"
+    - "friday"
   update_times:
-    - "4:00"
-  delete_old_backups: true
-  delete_old_backups_after: 30
+    - "03:00"
 
 sonarr:
   instances:
-    main:
-      hostname: sonarr
+    sonarr:
+      host: "sonarr"
       port: 8989
-      protocol: http
-      api_key: ${SONARR_API_KEY}
+      protocol: "http"
 
 radarr:
   instances:
-    main:
-      hostname: radarr
+    radarr:
+      host: "radarr"
       port: 7878
-      protocol: http
-      api_key: ${RADARR_API_KEY}
+      protocol: "http"
 
 prowlarr:
   instances:
-    main:
-      hostname: prowlarr
+    prowlarr:
+      host: "prowlarr"
       port: 9696
-      protocol: http
-      api_key: ${PROWLARR_API_KEY}
+      protocol: "http"
 
 bazarr:
   instances:
-    main:
-      hostname: bazarr
+    bazarr:
+      host: "bazarr"
       port: 6767
-      protocol: http
-      api_key: ${BAZARR_API_KEY}
+      protocol: "http"
