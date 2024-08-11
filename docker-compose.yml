@@ -12,10 +12,9 @@ services:
       - VERSION=docker
       - PLEX_CLAIM=${PLEX_CLAIM:-}
     volumes:
-      - ./data/plex/config:/config
-      - ./data/tv:/tv
-      - ./data/movies:/movies
-
+      - ./data/plex/config:/data/config
+      - ./data/tv:/data/tv
+      - ./data/movies:/data/movies
     ports:
       - 32400:32400
     restart: unless-stopped
@@ -30,9 +29,9 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/London}
     volumes:
-      - ./data/sonarr:/config
-      - ./data/tv:/tv
-      - ./data/downloads:/downloads
+      - ./data/sonarr:/data/config
+      - ./data/tv:/data/tv
+      - ./data/downloads:/data/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -47,9 +46,9 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/London}
     volumes:
-      - ./data/radarr:/config
-      - ./data/movies:/movies
-      - ./data/downloads:/downloads
+      - ./data/radarr:/data/config
+      - ./data/movies:/data/movies
+      - ./data/downloads:/data/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -79,9 +78,9 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/London}
     volumes:
-      - ./data/bazarr:/config
-      - ./data/tv:/tv
-      - ./data/movies:/movies
+      - ./data/bazarr:/data/config
+      - ./data/tv:/data/tv
+      - ./data/movies:/data/movies
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -96,8 +95,8 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/London}
     volumes:
-      - ./data/sabnzbd:/config
-      - ./data/downloads:/downloads
+      - ./data/sabnzbd:/data/config
+      - ./data/downloads:/data/downloads
     ports:
       - 8080:8080
     restart: unless-stopped
