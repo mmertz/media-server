@@ -82,8 +82,9 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - ./data/sabnzbd:/config
-      - ./data/downloads:/downloads
+      - ./config/sabnzbd:/config
+      - /storage/Downloads/complete:/downloads
+      - /downloads/incomplete:/incomplete-downloads
     ports:
       - 8080:8080
     restart: unless-stopped
