@@ -3,7 +3,13 @@
 # Load environment variables from .env file
 source .env
 
-# Create data directory if it doesn't exist
+# Stop and remove existing containers
+docker-compose down
+
+# Remove existing data directory
+sudo rm -rf ./data
+
+# Create new data directory
 mkdir -p ./data
 
 # Set correct permissions
