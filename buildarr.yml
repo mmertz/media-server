@@ -1,4 +1,3 @@
----
 buildarr:
   watch_config: true
   update_days:
@@ -7,6 +6,8 @@ buildarr:
     - "friday"
   update_times:
     - "03:00"
+  secrets_file: "/config/secrets.yaml"
+  log_level: "INFO"
 
 sonarr:
   instances:
@@ -14,6 +15,40 @@ sonarr:
       host: "sonarr"
       port: 8989
       protocol: "http"
+      api_key: "${SONARR_API_KEY}"
+      version: 3
+      settings:
+        profiles:
+          quality_profiles:
+            definitions:
+              4K:
+                upgrades_allowed: true
+                upgrade_until: "Bluray-2160p"
+                qualities:
+                  - "Bluray-2160p"
+                  - "WEBDL-2160p"
+                  - "WEBRip-2160p"
+                  - "HDTV-2160p"
+              HD-1080p:
+                upgrades_allowed: true
+                upgrade_until: "Bluray-1080p"
+                qualities:
+                  - "Bluray-1080p"
+                  - "WEBDL-1080p"
+                  - "WEBRip-1080p"
+                  - "Bluray-720p"
+                  - "WEBDL-720p"
+                  - "WEBRip-720p"
+                  - "HDTV-1080p"
+                  - "HDTV-720p"
+              HD-720p:
+                upgrades_allowed: true
+                upgrade_until: "Bluray-720p"
+                qualities:
+                  - "Bluray-720p"
+                  - "WEBDL-720p"
+                  - "WEBRip-720p"
+                  - "HDTV-720p"
 
 radarr:
   instances:
@@ -21,6 +56,40 @@ radarr:
       host: "radarr"
       port: 7878
       protocol: "http"
+      api_key: "${RADARR_API_KEY}"
+      version: 4
+      settings:
+        profiles:
+          quality_profiles:
+            definitions:
+              4K:
+                upgrades_allowed: true
+                upgrade_until: "Bluray-2160p"
+                qualities:
+                  - "Bluray-2160p"
+                  - "WEBDL-2160p"
+                  - "WEBRip-2160p"
+                  - "HDTV-2160p"
+              HD-1080p:
+                upgrades_allowed: true
+                upgrade_until: "Bluray-1080p"
+                qualities:
+                  - "Bluray-1080p"
+                  - "WEBDL-1080p"
+                  - "WEBRip-1080p"
+                  - "Bluray-720p"
+                  - "WEBDL-720p"
+                  - "WEBRip-720p"
+                  - "HDTV-1080p"
+                  - "HDTV-720p"
+              HD-720p:
+                upgrades_allowed: true
+                upgrade_until: "Bluray-720p"
+                qualities:
+                  - "Bluray-720p"
+                  - "WEBDL-720p"
+                  - "WEBRip-720p"
+                  - "HDTV-720p"
 
 prowlarr:
   instances:
@@ -28,6 +97,21 @@ prowlarr:
       host: "prowlarr"
       port: 9696
       protocol: "http"
+      api_key: "${PROWLARR_API_KEY}"
+      settings:
+        indexers:
+          indexers:
+            delete_unmanaged: false
+            definitions:
+              "NZBgeek":
+                type: newznab
+                enable: true
+                url: "https://api.nzbgeek.info"
+                api_path: "/api"
+                api_key: "${NZBGEEK_API_KEY}"
+                categories:
+                  - 5000  # TV
+                  - 2000  # Movies
 
 bazarr:
   instances:
@@ -35,3 +119,18 @@ bazarr:
       host: "bazarr"
       port: 6767
       protocol: "http"
+      api_key: "${BAZARR_API_KEY}"
+      language_profiles:
+        - name: "English"
+          languages:
+            - language: "eng"
+              audio_exclusion: false
+        - name: "Dutch"
+          languages:
+            - language: "nld"
+              audio_exclusion: false
+      providers:
+        - name: "OpenSubtitles"
+          enabled: true
+        - name: "Subscene"
+          enabled: true
