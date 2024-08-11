@@ -123,10 +123,7 @@ services:
     networks:
       - media_network
     volumes:
-      - type: bind
-        source: ./buildarr
-        target: /config
-        read_only: true
+      - ./buildarr:/config
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
