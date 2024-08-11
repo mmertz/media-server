@@ -4,21 +4,26 @@ services:
   plex:
     image: linuxserver/plex:latest
     container_name: plex
-    network_mode: host
+    networks:
+      - media_network
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - VERSION=docker
-      - PLEX_CLAIM=${PLEX_CLAIM:-} #optional
+      - PLEX_CLAIM=${PLEX_CLAIM:-}
     volumes:
       - ./data/plex/config:/config
       - ./data/media/tv:/tv
       - ./data/media/movies:/movies
+    ports:
+      - 32400:32400
     restart: unless-stopped
 
   sonarr:
     image: linuxserver/sonarr:latest
     container_name: sonarr
+    networks:
+      - media_network
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
@@ -34,6 +39,8 @@ services:
   radarr:
     image: linuxserver/radarr:latest
     container_name: radarr
+    networks:
+      - media_network
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
@@ -49,6 +56,8 @@ services:
   overseerr:
     image: linuxserver/overseerr:latest
     container_name: overseerr
+    networks:
+      - media_network
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
@@ -62,6 +71,8 @@ services:
   bazarr:
     image: linuxserver/bazarr:latest
     container_name: bazarr
+    networks:
+      - media_network
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
@@ -77,6 +88,8 @@ services:
   sabnzbd:
     image: linuxserver/sabnzbd:latest
     container_name: sabnzbd
+    networks:
+      - media_network
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
@@ -88,6 +101,10 @@ services:
     ports:
       - 8080:8080
     restart: unless-stopped
+
+networks:
+  media_network:
+    name: media_network
 
 volumes:
   data:
