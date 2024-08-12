@@ -12,74 +12,10 @@ buildarr:
 sonarr:
   port: 8989
   protocol: "http"
-  settings:
-    profiles:
-      quality_profiles:
-        definitions:
-          4K:
-            upgrades_allowed: true
-            upgrade_until: "Bluray-2160p"
-            qualities:
-              - "Bluray-2160p"
-              - "WEBDL-2160p"
-              - "WEBRip-2160p"
-              - "HDTV-2160p"
-          HD-1080p:
-            upgrades_allowed: true
-            upgrade_until: "Bluray-1080p"
-            qualities:
-              - "Bluray-1080p"
-              - "WEBDL-1080p"
-              - "WEBRip-1080p"
-              - "Bluray-720p"
-              - "WEBDL-720p"
-              - "WEBRip-720p"
-              - "HDTV-1080p"
-              - "HDTV-720p"
-          HD-720p:
-            upgrades_allowed: true
-            upgrade_until: "Bluray-720p"
-            qualities:
-              - "Bluray-720p"
-              - "WEBDL-720p"
-              - "WEBRip-720p"
-              - "HDTV-720p"
 
 radarr:
   port: 7878
   protocol: "http"
-  settings:
-    profiles:
-      quality_profiles:
-        definitions:
-          4K:
-            upgrades_allowed: true
-            upgrade_until_quality: "Bluray-2160p"
-            qualities:
-              - "Bluray-2160p"
-              - "WEBDL-2160p"
-              - "WEBRip-2160p"
-              - "HDTV-2160p"
-          HD-1080p:
-            upgrades_allowed: true
-            upgrade_until_quality: "Bluray-1080p"
-            qualities:
-              - "Bluray-1080p"
-              - "WEBDL-1080p"
-              - "WEBRip-1080p"
-              - "Bluray-720p"
-              - "WEBDL-720p"
-              - "WEBRip-720p"
-              - "HDTV-1080p"
-              - "HDTV-720p"
-          HD-720p:
-            upgrades_allowed: true
-            upgrade_until_quality: "Bluray-720p"
-            qualities:
-              - "Bluray-720p"
-              - "WEBDL-720p"
-              - "WEBRip-720p"
-              - "HDTV-720p"
 
 prowlarr:
   port: 9696

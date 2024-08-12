@@ -12,9 +12,9 @@ services:
       - VERSION=docker
       - PLEX_CLAIM=${PLEX_CLAIM:-}
     volumes:
-      - ./data/plex/config:/data/config
-      - ./data/tv:/data/tv
-      - ./data/movies:/data/movies
+      - plex_config:/data/config
+      - tv_data:/data/tv
+      - movies_data:/data/movies
     ports:
       - 32400:32400
     restart: unless-stopped
@@ -29,9 +29,9 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/London}
     volumes:
-      - ./data/sonarr:/data/config
-      - ./data/tv:/data/tv
-      - ./data/downloads:/data/downloads
+      - sonarr_config:/data/config
+      - tv_data:/data/tv
+      - downloads_data:/data/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -46,9 +46,9 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/London}
     volumes:
-      - ./data/radarr:/data/config
-      - ./data/movies:/data/movies
-      - ./data/downloads:/data/downloads
+      - radarr_config:/data/config
+      - movies_data:/data/movies
+      - downloads_data:/data/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -63,7 +63,7 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/London}
     volumes:
-      - ./data/overseerr:/data/config
+      - overseerr_config:/data/config
     ports:
       - 5055:5055
     restart: unless-stopped
@@ -78,9 +78,9 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/London}
     volumes:
-      - ./data/bazarr:/data/config
-      - ./data/tv:/data/tv
-      - ./data/movies:/data/movies
+      - bazarr_config:/data/config
+      - tv_data:/data/tv
+      - movies_data:/data/movies
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -95,8 +95,8 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/London}
     volumes:
-      - ./data/sabnzbd:/data/config
-      - ./data/downloads:/data/downloads
+      - sabnzbd_config:/data/config
+      - downloads_data:/data/downloads
     ports:
       - 8080:8080
     restart: unless-stopped
@@ -111,19 +111,20 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-Europe/London}
     volumes:
-      - ./data/prowlarr:/data/config
+      - prowlarr_config:/data/config
     ports:
       - 9696:9696
     restart: unless-stopped
 
   buildarr:
     image: callum027/buildarr:latest
-    restart: always
+    restart: unless-stopped
     container_name: buildarr
     networks:
       - media_network
     volumes:
       - ./buildarr:/config
+      - ./buildarr-secret.yml:/config/secrets.yaml:ro
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
@@ -134,4 +135,13 @@ networks:
     name: media_network
 
 volumes:
-  data:
+  plex_config:
+  sonarr_config:
+  radarr_config:
+  overseerr_config:
+  bazarr_config:
+  sabnzbd_config:
+  prowlarr_config:
+  tv_data:
+  movies_data:
+  downloads_data:
