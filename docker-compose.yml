@@ -12,8 +12,8 @@ services:
       - VERSION=docker
     volumes:
       - plex_config:/config
-      - tv_data:/tv
-      - movies_data:/movies
+      - /home/user/media/tv:/tv
+      - /home/user/media/movies:/movies
     ports:
       - 32400:32400
     restart: unless-stopped
@@ -29,8 +29,8 @@ services:
       - TZ=Europe/Amsterdam
     volumes:
       - sonarr_config:/config
-      - tv_data:/tv
-      - downloads_data:/downloads
+      - /home/user/media/tv:/tv
+      - /home/user/media/downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -46,8 +46,8 @@ services:
       - TZ=Europe/Amsterdam
     volumes:
       - radarr_config:/config
-      - movies_data:/movies
-      - downloads_data:/downloads
+      - /home/user/media/movies:/movies
+      - /home/user/media/downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -78,8 +78,8 @@ services:
       - TZ=Europe/Amsterdam
     volumes:
       - bazarr_config:/config
-      - tv_data:/tv
-      - movies_data:/movies
+      - /home/user/media/tv:/tv
+      - /home/user/media/movies:/movies
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -95,7 +95,7 @@ services:
       - TZ=Europe/Amsterdam
     volumes:
       - nzbget_config:/config
-      - downloads_data:/downloads
+      - /home/user/media/downloads:/downloads
     ports:
       - 6789:6789
     restart: unless-stopped
@@ -139,6 +139,3 @@ volumes:
   bazarr_config:
   nzbget_config:
   prowlarr_config:
-  tv_data:
-  movies_data:
-  downloads_data:
