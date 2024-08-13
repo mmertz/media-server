@@ -137,7 +137,7 @@ volumes:
   radarr_config:
   overseerr_config:
   bazarr_config:
-  sabnzbd_config:
+  nzbget_config:
   prowlarr_config:
   tv_data:
   movies_data:
