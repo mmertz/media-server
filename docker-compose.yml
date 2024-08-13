@@ -10,8 +10,9 @@ services:
       - PUID=1000
       - PGID=1000
       - VERSION=docker
+      - TZ=Europe/Amsterdam
     volumes:
-      - plex_config:/config
+      - /home/user/docker/configs/plex:/config
       - /home/user/media/tv:/tv
       - /home/user/media/movies:/movies
     ports:
@@ -28,7 +29,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - sonarr_config:/config
+      - /home/user/docker/configs/sonarr:/config
       - /home/user/media/tv:/tv
       - /home/user/media/downloads:/downloads
     ports:
@@ -45,7 +46,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - radarr_config:/config
+      - /home/user/docker/configs/radarr:/config
       - /home/user/media/movies:/movies
       - /home/user/media/downloads:/downloads
     ports:
@@ -62,7 +63,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - overseerr_config:/config
+      - /home/user/docker/configs/overseerr:/config
     ports:
       - 5055:5055
     restart: unless-stopped
@@ -77,7 +78,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - bazarr_config:/config
+      - /home/user/docker/configs/bazarr:/config
       - /home/user/media/tv:/tv
       - /home/user/media/movies:/movies
     ports:
@@ -94,7 +95,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - nzbget_config:/config
+      - /home/user/docker/configs/nzbget:/config
       - /home/user/media/downloads:/downloads
     ports:
       - 6789:6789
@@ -110,7 +111,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - prowlarr_config:/config
+      - /home/user/docker/configs/prowlarr:/config
     ports:
       - 9696:9696
     restart: unless-stopped
@@ -122,7 +123,7 @@ services:
     networks:
       - media_network
     volumes:
-      - ./config:/config
+      - /home/user/docker/configs/recyclarr:/config
     environment:
       - TZ=Europe/Amsterdam
     restart: unless-stopped
@@ -130,12 +131,3 @@ services:
 networks:
   media_network:
     name: media_network
-
-volumes:
-  plex_config:
-  sonarr_config:
-  radarr_config:
-  overseerr_config:
-  bazarr_config:
-  nzbget_config:
-  prowlarr_config:
