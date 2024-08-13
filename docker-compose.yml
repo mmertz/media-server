@@ -11,9 +11,9 @@ services:
       - PGID=1000
       - VERSION=docker
     volumes:
-      - plex_config:/data/config
-      - tv_data:/data/tv
-      - movies_data:/data/movies
+      - plex_config:/config
+      - tv_data:/tv
+      - movies_data:/movies
     ports:
       - 32400:32400
     restart: unless-stopped
@@ -28,9 +28,9 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - sonarr_config:/data/config
-      - tv_data:/data/tv
-      - downloads_data:/data/downloads
+      - sonarr_config:/config
+      - tv_data:/tv
+      - downloads_data:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -45,9 +45,9 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - radarr_config:/data/config
-      - movies_data:/data/movies
-      - downloads_data:/data/downloads
+      - radarr_config:/config
+      - movies_data:/movies
+      - downloads_data:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -62,7 +62,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - overseerr_config:/data/config
+      - overseerr_config:/config
     ports:
       - 5055:5055
     restart: unless-stopped
@@ -77,9 +77,9 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - bazarr_config:/data/config
-      - tv_data:/data/tv
-      - movies_data:/data/movies
+      - bazarr_config:/config
+      - tv_data:/tv
+      - movies_data:/movies
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -94,8 +94,8 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - nzbget_config:/data/config
-      - downloads_data:/data/downloads
+      - nzbget_config:/config
+      - downloads_data:/downloads
     ports:
       - 6789:6789
     restart: unless-stopped
@@ -110,7 +110,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
-      - prowlarr_config:/data/config
+      - prowlarr_config:/config
     ports:
       - 9696:9696
     restart: unless-stopped
