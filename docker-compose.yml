@@ -7,8 +7,6 @@ services:
     networks:
       - media_network
     environment:
-      - PUID=1000
-      - PGID=1000
       - VERSION=docker
     volumes:
       - plex_config:/data/config
@@ -24,8 +22,6 @@ services:
     networks:
       - media_network
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
       - sonarr_config:/data/config
@@ -41,8 +37,6 @@ services:
     networks:
       - media_network
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
       - radarr_config:/data/config
@@ -58,8 +52,6 @@ services:
     networks:
       - media_network
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
       - overseerr_config:/data/config
@@ -73,8 +65,6 @@ services:
     networks:
       - media_network
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
       - bazarr_config:/data/config
@@ -90,9 +80,9 @@ services:
     networks:
       - media_network
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Europe/Amsterdam
+      - NZBGET_USER=nzbget
+      - NZBGET_PASS=tegbzn6789
     volumes:
       - nzbget_config:/data/config
       - downloads_data:/data/downloads
@@ -106,8 +96,6 @@ services:
     networks:
       - media_network
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Europe/Amsterdam
     volumes:
       - prowlarr_config:/data/config
@@ -118,7 +106,6 @@ services:
   recyclarr:
     image: ghcr.io/recyclarr/recyclarr:latest
     container_name: recyclarr
-    user: 1000:1000
     networks:
       - media_network
     volumes:
